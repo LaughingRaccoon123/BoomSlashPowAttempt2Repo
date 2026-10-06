@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0350100c9b0ed254fbc4a7aa5269fb35
+timeCreated: 1456105893
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 57637
+  packageName: Earth Mage
+  packageVersion: 1.0
+  assetPath: Assets/Earth_Mage/materials/magi_earth_mat.mat
+  uploadId: 107804
