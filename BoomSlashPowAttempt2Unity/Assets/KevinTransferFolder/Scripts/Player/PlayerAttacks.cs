@@ -32,7 +32,7 @@ public class PlayerAttacks : MonoBehaviour
         Vector3 rotatedPlayerOffset = transform.TransformDirection(playerOffset);
         Vector3 spawnPosition = transform.position + rotatedPlayerOffset;
 
-        GameObject spawnedObject = Instantiate(orbPrefab, spawnPosition, transform.rotation);
+        GameObject spawnedObject = Instantiate(orbPrefab, spawnPosition, Camera.main.transform.rotation);
     }
 
     IEnumerator WaitForFramesThenSpawnOrb(int framesToWait)

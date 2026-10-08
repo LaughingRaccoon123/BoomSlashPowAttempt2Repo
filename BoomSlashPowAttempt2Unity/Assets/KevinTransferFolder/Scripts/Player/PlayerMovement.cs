@@ -90,16 +90,13 @@ public class PlayerMovement : MonoBehaviour
 
             anim.SetBool("run", isMoving);
         }
+
+        // --------------------
+        // DETECTING ENEMY ATTACKS
+        // --------------------
+
+        
     }
-
-
-
-
-    private void FixedUpdate()
-    {
-
-    }
-
 
     // =====================================================
     // INPUT SYSTEM

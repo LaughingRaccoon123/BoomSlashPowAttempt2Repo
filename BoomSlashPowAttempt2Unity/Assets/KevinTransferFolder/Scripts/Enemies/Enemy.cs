@@ -75,11 +75,6 @@ public class Enemy : MonoBehaviour
         {
             anim.SetBool("damage", true);
         }
-        else
-        {
-            // This will print out the exact name of the broken object in the Console
-            Debug.LogError($"[ANIMATOR MISSING] The object named '{gameObject.name}' is missing an Animator component!", this);
-        }
 
         if (health <= 0)
         {
