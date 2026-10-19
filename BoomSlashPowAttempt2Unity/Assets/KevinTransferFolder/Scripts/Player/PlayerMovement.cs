@@ -33,11 +33,6 @@ public class PlayerMovement : MonoBehaviour
 
         controller = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
-
-        if (controller == null)
-        {
-            Debug.Log("there is no character controller on the player");
-        }
     }
 
 
@@ -104,7 +99,14 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        moveInput = context.ReadValue<Vector2>();
+        if (context.performed || context.started)
+        {
+            moveInput = context.ReadValue<Vector2>();
+        }
+        else if (context.canceled)
+        {
+            moveInput = Vector2.zero;
+        }   
     }
 
 

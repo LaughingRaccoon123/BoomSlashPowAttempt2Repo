@@ -1,9 +1,12 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
+    public PlayerHealth playerHealth;
+
     public Transform player;
     private Animator anim;
     private NavMeshAgent agent;
@@ -13,6 +16,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float turnSpeed = 5.0f;
 
     [SerializeField] private float health = 20f;
+    [SerializeField] private float damage = 1f;
+    private float distanceToPlayer;
 
     void Awake()
     {
@@ -22,13 +27,14 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
+        playerHealth = player.GetComponent<PlayerHealth>();
     }
 
     private void Update()
     {
         if (agent == null || !agent.enabled || !agent.isOnNavMesh) return;
 
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
         Vector3 direction = player.position - transform.position;
         direction.y = 0;
@@ -40,12 +46,7 @@ public class Enemy : MonoBehaviour
 
         if (distanceToPlayer <= attackRange)
         {
-            agent.isStopped = true;
-            agent.velocity = Vector3.zero;
-
-            anim.SetBool("run", false);
-            anim.SetBool("walk", false);
-            anim.SetBool("attacking", true);
+            AttackPlayer(damage);
 
         } else if (distanceToPlayer <= detectionRange)
         {
@@ -70,7 +71,6 @@ public class Enemy : MonoBehaviour
     {
         health -= damage;
 
-        // Safety check: Only trigger animation if 'anim' isn't empty
         if (anim != null)
         {
             anim.SetBool("damage", true);
@@ -100,11 +100,36 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject, 1f);
     }
 
+    private void AttackPlayer(float damage)
+    {
+        agent.isStopped = true;
+        agent.velocity = Vector3.zero;
+
+        anim.SetBool("run", false);
+        anim.SetBool("walk", false);
+        anim.SetBool("attacking", true);
+
+        if (distanceToPlayer <= attackRange)
+        {
+            playerHealth.PlayerTakeDamage(damage);
+            WaitForFrames(42);
+        }
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, detectionRange);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
+
+    IEnumerator WaitForFrames(int frames)
+    {
+        while (frames > 0)
+        {
+            frames--;
+            yield return null;
+        }
     }
 }
