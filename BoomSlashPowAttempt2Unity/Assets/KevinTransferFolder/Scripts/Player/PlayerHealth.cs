@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public CanvasUI canvasUI;
     [SerializeField] private float playerHealth = 10f;
 
     void Start()
@@ -21,12 +22,14 @@ public class PlayerHealth : MonoBehaviour
 
         if (playerHealth <= 0)
         {
-
+            PlayerDie();
+            
         }
     }
 
     private void PlayerDie()
     {
-
+        canvasUI.deadScreenOverlay(true);
+        Time.timeScale = 0f;
     }
 }

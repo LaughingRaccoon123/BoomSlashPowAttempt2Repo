@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -17,6 +16,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private float health = 20f;
     [SerializeField] private float damage = 1f;
+    [SerializeField] private float attackCooldown = 1.5f;
     private float distanceToPlayer;
 
     void Awake()
