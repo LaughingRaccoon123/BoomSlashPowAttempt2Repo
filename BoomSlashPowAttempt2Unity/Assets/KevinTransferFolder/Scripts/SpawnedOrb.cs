@@ -13,8 +13,7 @@ public class SpawnedOrb : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log(transform.position);
-        
+
     }
 
     private void OnTriggerEnter(Collider other)

@@ -21,19 +21,25 @@ public class EnemySpawner : MonoBehaviour
         while (enemyPool.Count > 0)
         {
             yield return new WaitForSeconds(time);
-            GameObject spawnedEnemy = Instantiate(enemyPool[0], enemySpawner.transform.position, enemySpawner.transform.rotation);
+
+            Vector3 spawnPosition = enemySpawner.transform.position;
+
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(enemySpawner.transform.position, out hit, 10.0f, NavMesh.AllAreas))
+            {
+                spawnPosition = hit.position - new Vector3(0, 0.5f, 0);
+            }
+
+            GameObject spawnedEnemy = Instantiate(enemyPool[0], spawnPosition, enemySpawner.transform.rotation);
             enemyPool.RemoveAt(0);
 
             NavMeshAgent agent = spawnedEnemy.GetComponent<NavMeshAgent>();
             if (agent != null)
             {
-                NavMeshHit hit;
-                if (NavMesh.SamplePosition(enemySpawner.transform.position, out hit, 2.0f, NavMesh.AllAreas))
-                {
-                    agent.Warp(hit.position);
-                }
+                agent.Warp(spawnPosition);
             }
         }
     }
+
 
 }

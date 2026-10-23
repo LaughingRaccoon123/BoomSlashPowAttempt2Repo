@@ -12,7 +12,6 @@ public class PlayerAttacks : MonoBehaviour
 
     private bool isAttacking = false;
 
-
     void Start()
     {
         anim = GetComponent<Animator>();

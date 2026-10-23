@@ -19,6 +19,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float attackCooldown = 1.5f;
     private float distanceToPlayer;
 
+    [SerializeField] private string attackStateName = "attack01";
+    [SerializeField] private int targetDamageFrame = 15;
+    [SerializeField] private int totalFramesInClip = 35;
+    private bool hasDealtDamage = false;
+
     void Awake()
     {
         anim = GetComponent<Animator>();
@@ -32,13 +37,38 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (agent == null || !agent.enabled || !agent.isOnNavMesh) return;
-
         distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
+        AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+
+        if (stateInfo.IsName(attackStateName))
+        {
+            float currentNormalizedTime = stateInfo.normalizedTime % 1f;
+            int currentFrame = Mathf.FloorToInt(currentNormalizedTime * totalFramesInClip);
+
+            if (distanceToPlayer <= attackRange)
+            {
+                if (currentFrame >= targetDamageFrame && !hasDealtDamage)
+                {
+
+                    AttackPlayer(damage);
+                    hasDealtDamage = true;
+                }
+
+            }
+        }
+        else
+        {
+            {
+                hasDealtDamage = false;
+            }
+        }
+        if (agent == null || !agent.enabled || !agent.isOnNavMesh) return;
+
         Vector3 direction = player.position - transform.position;
+
         direction.y = 0;
-        if (direction != Vector3.zero)
+        if (direction != Vector3.zero && distanceToPlayer <= detectionRange)
         {
             Quaternion rotationTarget = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotationTarget, turnSpeed * Time.deltaTime);
@@ -46,9 +76,14 @@ public class Enemy : MonoBehaviour
 
         if (distanceToPlayer <= attackRange)
         {
-            AttackPlayer(damage);
+            agent.isStopped = true;
+            agent.velocity = Vector3.zero;
 
-        } else if (distanceToPlayer <= detectionRange)
+            anim.SetBool("run", false);
+            anim.SetBool("walk", false);
+            anim.SetBool("attacking", true);
+        }
+        else if (distanceToPlayer <= detectionRange)
         {
             agent.isStopped = false;
             agent.SetDestination(player.position);
@@ -56,7 +91,8 @@ public class Enemy : MonoBehaviour
             anim.SetBool("run", true);
             anim.SetBool("walk", false);
             anim.SetBool("attacking", false);
-        } else if (distanceToPlayer > detectionRange)
+        }
+        else if (distanceToPlayer > detectionRange)
         {
             agent.isStopped = true;
             agent.velocity = Vector3.zero;
@@ -112,7 +148,6 @@ public class Enemy : MonoBehaviour
         if (distanceToPlayer <= attackRange)
         {
             playerHealth.PlayerTakeDamage(damage);
-            WaitForFrames(42);
         }
     }
 
@@ -122,14 +157,5 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, detectionRange);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
-    }
-
-    IEnumerator WaitForFrames(int frames)
-    {
-        while (frames > 0)
-        {
-            frames--;
-            yield return null;
-        }
     }
 }
