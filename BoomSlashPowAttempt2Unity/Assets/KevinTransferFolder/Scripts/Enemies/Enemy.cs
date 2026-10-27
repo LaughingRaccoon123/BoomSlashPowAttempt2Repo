@@ -5,7 +5,6 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     public PlayerHealth playerHealth;
-
     public Transform player;
     private Animator anim;
     private NavMeshAgent agent;
@@ -13,10 +12,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float detectionRange = 12f;
     [SerializeField] private float attackRange = 2.5f;
     [SerializeField] private float turnSpeed = 5.0f;
-
     [SerializeField] private float health = 20f;
     [SerializeField] private float damage = 1f;
-    [SerializeField] private float attackCooldown = 1.5f;
+
     private float distanceToPlayer;
 
     [SerializeField] private string attackStateName = "attack01";
@@ -29,44 +27,54 @@ public class Enemy : MonoBehaviour
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
     }
+
     void Start()
     {
-        player = GameObject.FindWithTag("Player").transform;
-        playerHealth = player.GetComponent<PlayerHealth>();
+        GameObject playerObj = GameObject.FindWithTag("Player");
+        if (playerObj != null)
+        {
+            player = playerObj.transform;
+            playerHealth = player.GetComponent<PlayerHealth>();
+        }
     }
 
     private void Update()
     {
-        distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        if (player == null) return;
 
+        distanceToPlayer = Vector3.Distance(transform.position, player.position);
         AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
 
+        // --- ATTACK FRAME DAMAGE LOGIC ---
         if (stateInfo.IsName(attackStateName))
         {
+            // Get normalized time (0.0 to 1.0) for the current loop
             float currentNormalizedTime = stateInfo.normalizedTime % 1f;
             int currentFrame = Mathf.FloorToInt(currentNormalizedTime * totalFramesInClip);
 
-            if (distanceToPlayer <= attackRange)
+            // Reset damage window if the animation loops back to the beginning
+            if (currentFrame < targetDamageFrame)
             {
-                if (currentFrame >= targetDamageFrame && !hasDealtDamage)
-                {
+                hasDealtDamage = false;
+            }
 
-                    AttackPlayer(damage);
-                    hasDealtDamage = true;
-                }
-
+            // Trigger damage when reaching the target frame
+            if (currentFrame >= targetDamageFrame && !hasDealtDamage)
+            {
+                AttackPlayer(damage);
+                hasDealtDamage = true;
             }
         }
         else
         {
-            {
-                hasDealtDamage = false;
-            }
+            hasDealtDamage = false;
         }
+
+        // --- MOVEMENT & AI LOGIC ---
         if (agent == null || !agent.enabled || !agent.isOnNavMesh) return;
 
+        // Rotation
         Vector3 direction = player.position - transform.position;
-
         direction.y = 0;
         if (direction != Vector3.zero && distanceToPlayer <= detectionRange)
         {
@@ -74,11 +82,11 @@ public class Enemy : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, rotationTarget, turnSpeed * Time.deltaTime);
         }
 
+        // State Machine Switches
         if (distanceToPlayer <= attackRange)
         {
             agent.isStopped = true;
             agent.velocity = Vector3.zero;
-
             anim.SetBool("run", false);
             anim.SetBool("walk", false);
             anim.SetBool("attacking", true);
@@ -87,16 +95,14 @@ public class Enemy : MonoBehaviour
         {
             agent.isStopped = false;
             agent.SetDestination(player.position);
-
             anim.SetBool("run", true);
             anim.SetBool("walk", false);
             anim.SetBool("attacking", false);
         }
-        else if (distanceToPlayer > detectionRange)
+        else
         {
             agent.isStopped = true;
             agent.velocity = Vector3.zero;
-
             anim.SetBool("run", false);
             anim.SetBool("walk", false);
             anim.SetBool("attacking", false);
@@ -106,12 +112,10 @@ public class Enemy : MonoBehaviour
     public void EnemyTakeDamage(float damage)
     {
         health -= damage;
-
         if (anim != null)
         {
-            anim.SetBool("damage", true);
+            anim.SetTrigger("damage"); // Triggers are usually cleaner for hit reactions
         }
-
         if (health <= 0)
         {
             EnemyDie();
@@ -125,29 +129,24 @@ public class Enemy : MonoBehaviour
             anim.SetBool("dead", true);
         }
         agent.enabled = false;
-
         Collider collider = GetComponent<Collider>();
-
         if (collider != null)
         {
             collider.enabled = false;
         }
-
         Destroy(gameObject, 1f);
     }
 
     private void AttackPlayer(float damage)
     {
-        agent.isStopped = true;
-        agent.velocity = Vector3.zero;
-
-        anim.SetBool("run", false);
-        anim.SetBool("walk", false);
-        anim.SetBool("attacking", true);
-
-        if (distanceToPlayer <= attackRange)
+        // Safe check to make sure player is still close enough when frame hits
+        if (distanceToPlayer <= attackRange + 0.5f) // Added a small buffer zone
         {
-            playerHealth.PlayerTakeDamage(damage);
+            Debug.Log("nails");
+            if (playerHealth != null)
+            {
+                playerHealth.PlayerTakeDamage(damage);
+            }
         }
     }
 
