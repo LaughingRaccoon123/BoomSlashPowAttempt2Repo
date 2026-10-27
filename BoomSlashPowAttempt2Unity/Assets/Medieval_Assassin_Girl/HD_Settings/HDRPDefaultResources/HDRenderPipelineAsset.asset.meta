@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b9f3086da92434da0bc1518f19f0ce86
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 326921
+  packageName: Medieval_Assassin_Girl
+  packageVersion: 1.0
+  assetPath: Assets/Medieval_Assassin_Girl/HD_Settings/HDRPDefaultResources/HDRenderPipelineAsset.asset
+  uploadId: 773757
