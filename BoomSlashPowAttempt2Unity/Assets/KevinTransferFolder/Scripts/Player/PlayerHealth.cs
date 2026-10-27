@@ -3,16 +3,13 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public CanvasUI canvasUI;
-    [SerializeField] private float playerHealth = 10f;
+    public float playerHealth { get; private set; }
 
-    void Start()
-    {
-        
-    }
+    [SerializeField] private float playerMaxHealth = 10f;
 
-    void Update()
+    private void Awake()
     {
-        
+        playerHealth = playerMaxHealth;
     }
 
     public void PlayerTakeDamage(float damage)
