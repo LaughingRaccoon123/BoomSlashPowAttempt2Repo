@@ -132,4 +132,17 @@ public class PlayerMovement : MonoBehaviour
             cameraAnchor.position = transform.position + anchorOffset;
         }
     }
+
+    //THESE ARE TO MAKE SURE THE RUN ANIMATION WORKS
+    // These match the Animation Events being triggered by the animation clip
+    public void FootR()
+    {
+        // You can play a right-foot footstep sound or particle effect here later
+    }
+
+    public void FootL()
+    {
+        // The animation likely also has a left foot event
+    }
+
 }

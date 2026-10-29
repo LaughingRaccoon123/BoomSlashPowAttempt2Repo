@@ -285,22 +285,14 @@ Animator:
   m_GameObject: {fileID: 1121244513}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b549692f7f04c6c409ff3e2bf2f5e3a7, type: 3}
-  m_Controller: {fileID: 9100000, guid: 3860abbaeb2e4db4b9e5b2ea88371d28, type: 2}
+  m_Controller: {fileID: 9100000, guid: b9ed402e446085f4d9ab4fd818479637, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'pelvis'\n\tTransform 'ball_l'\n\tTransform 'spine_02'\n\tTransform
-    'thigh_l'\n\tTransform 'calf_l'\n\tTransform 'foot_l'\n\tTransform 'foot_r'\n\tTransform
-    'ball_r'\n\tTransform 'pelvis'\n\tTransform 'spine_03'\n\tand more ...\n\tFrom
-    animation clip 'two swords_attack_1'\n\tFrom animation clip 'two swords_attack_2'\n\tFrom
-    animation clip 'two swords_attack_3'\n\tFrom animation clip 'two swords_attack_4'\n\tFrom
-    animation clip 'two swords_hit_1'\n\tFrom animation clip 'two swords_idle_1'\n\tFrom
-    animation clip 'two swords_idle_2'"
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
