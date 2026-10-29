@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1d0584d3cdc7cfa4598c36cb4c252f17
+timeCreated: 1457296406
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 57637
+  packageName: Earth Mage
+  packageVersion: 1.0
+  assetPath: Assets/Earth_Mage/prefabs/orb_fx_prefab.prefab
+  uploadId: 107804
