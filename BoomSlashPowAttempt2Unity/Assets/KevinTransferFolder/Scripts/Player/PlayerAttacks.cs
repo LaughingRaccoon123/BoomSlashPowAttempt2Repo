@@ -6,26 +6,56 @@ public class PlayerAttacks : MonoBehaviour
 {
     public GameObject orbPrefab;
 
-    [SerializeField] private InputActionReference orbAttack;
+    [SerializeField] private InputActionReference basicAttack;
 
     private Animator anim;
 
     private bool isAttacking = false;
 
+    private bool canUseOrbAttack = false;
+
+    private string playerClass;
+
+    [SerializeField] private float warriorLongSwordRange = 2.5f;
+
     void Start()
     {
         anim = GetComponent<Animator>();
+
+        if (anim.runtimeAnimatorController.name == "magi_earthen_v1_0")
+        {
+            playerClass = "Mage";
+            canUseOrbAttack = true;
+        }
+        else if (anim.runtimeAnimatorController.name == "warrior")
+        {
+            playerClass = "Warrior";
+            canUseOrbAttack = false;
+        }
     }
     void Update()
     {
-        if (orbAttack.action.triggered && !isAttacking)
+        if (basicAttack.action.triggered && !isAttacking)
         {
-            anim.SetBool("attacking", true);
-            StartCoroutine(WaitForFramesThenSpawnOrb(8));
+            if (playerClass == "Mage")
+            {
+                anim.SetBool("attacking", true);
+                StartCoroutine(WaitForFramesThenSpawnOrb(8));
+            }
+            else if (playerClass == "Warrior")
+            {
+                anim.SetBool("attacking", true);
+
+            }
         }
     }
 
-    void SpawnOrb()
+    void WarriorMeleeAttack()
+    {
+
+    }
+
+    void MageSpawnOrb()
     {
         Vector3 playerOffset = new Vector3(0.05f, 1.25f, 0.6f);
         Vector3 rotatedPlayerOffset = transform.TransformDirection(playerOffset);
@@ -41,7 +71,7 @@ public class PlayerAttacks : MonoBehaviour
             yield return null;
         }
 
-        SpawnOrb();
+        MageSpawnOrb();
 
         anim.SetBool("attacking", false);
 
@@ -56,5 +86,11 @@ public class PlayerAttacks : MonoBehaviour
         }
 
         isAttacking = false;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, warriorLongSwordRange);
     }
 }

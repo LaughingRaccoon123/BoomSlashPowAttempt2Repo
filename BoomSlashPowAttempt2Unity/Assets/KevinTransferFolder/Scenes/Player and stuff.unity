@@ -1081,6 +1081,10 @@ PrefabInstance:
       propertyPath: orbAttack
       value: 
       objectReference: {fileID: 1120369429361536294, guid: b119479523019464a86e6bdf7bb0fa9c, type: 3}
+    - target: {fileID: 5500218886623135911, guid: 4d05e064195692d4b83e2251f7223e8a, type: 3}
+      propertyPath: basicAttack
+      value: 
+      objectReference: {fileID: 1120369429361536294, guid: b119479523019464a86e6bdf7bb0fa9c, type: 3}
     - target: {fileID: 7287428752833619610, guid: 4d05e064195692d4b83e2251f7223e8a, type: 3}
       propertyPath: cameraAnchor
       value: 

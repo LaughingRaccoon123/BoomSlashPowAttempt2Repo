@@ -139,8 +139,7 @@ public class Enemy : MonoBehaviour
 
     private void AttackPlayer(float damage)
     {
-        // Safe check to make sure player is still close enough when frame hits
-        if (distanceToPlayer <= attackRange + 0.5f) // Added a small buffer zone
+        if (distanceToPlayer <= attackRange + 0.5f)
         {
             Debug.Log("nails");
             if (playerHealth != null)
