@@ -535,13 +535,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttacks
   orbPrefab: {fileID: 7175454871350466367, guid: e5a7601cb02c75846be2c858b1b6618c, type: 3}
-<<<<<<< Updated upstream
-  basicAttack: {fileID: 0}
-  warriorLongSwordRange: 2.5
-=======
   basicAttack: {fileID: 1120369429361536294, guid: b119479523019464a86e6bdf7bb0fa9c, type: 3}
   warriorLongSwordRange: 2
->>>>>>> Stashed changes
 --- !u!4 &1121244519 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8743278292405116139, guid: b37dcde3d0ea4934da36f610f07c0513, type: 3}
@@ -595,35 +590,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CanvasUI
   deadScreen: {fileID: 163801114}
-<<<<<<< Updated upstream
---- !u!1 &1670675564 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5070732894905588731, guid: b37dcde3d0ea4934da36f610f07c0513, type: 3}
-  m_PrefabInstance: {fileID: 1121244512}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1670675565
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1670675564}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 504ba89926656304cb75627391851c02, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
-=======
+    m_EditorClassIdentifier: Assembly-CSharp::CanvasUI
+  deadScreen: {fileID: 163801114}
 --- !u!1001 &1500265801
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -692,7 +660,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 402761722}
   m_SourcePrefab: {fileID: 100100000, guid: edccbf15fadd9704cb7a2020a492b120, type: 3}
->>>>>>> Stashed changes
 --- !u!1 &1753467186 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4215724356403700436, guid: d30527d08ccb0504ba2207a134f78948, type: 3}
