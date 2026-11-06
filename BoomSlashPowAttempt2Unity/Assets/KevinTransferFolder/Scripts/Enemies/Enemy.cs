@@ -114,7 +114,7 @@ public class Enemy : MonoBehaviour
         health -= damage;
         if (anim != null)
         {
-            anim.SetTrigger("damage"); // Triggers are usually cleaner for hit reactions
+            anim.SetTrigger("damage"); 
         }
         if (health <= 0)
         {
@@ -141,7 +141,6 @@ public class Enemy : MonoBehaviour
     {
         if (distanceToPlayer <= attackRange + 0.5f)
         {
-            Debug.Log("nails");
             if (playerHealth != null)
             {
                 playerHealth.PlayerTakeDamage(damage);
