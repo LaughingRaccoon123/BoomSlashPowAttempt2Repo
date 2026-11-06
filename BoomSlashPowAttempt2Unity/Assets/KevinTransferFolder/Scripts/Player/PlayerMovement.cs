@@ -84,6 +84,13 @@ public class PlayerMovement : MonoBehaviour
             bool isMoving = moveInput.sqrMagnitude > 0.01f;
 
             anim.SetBool("run", isMoving);
+
+            if (isMoving && anim.GetCurrentAnimatorStateInfo(0).IsName("Run"))
+            {
+                anim.SetBool("attacking", false);
+                // To fix this cleanly, we need PlayerMovement to tell PlayerAttacks to reset.
+                GetComponent<PlayerAttacks>().EndAttackAnimation();
+            }
         }
 
         // --------------------
