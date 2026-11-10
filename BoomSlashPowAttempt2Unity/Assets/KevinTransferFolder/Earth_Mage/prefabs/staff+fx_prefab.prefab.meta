@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3bb02854652fd4e4cab232e71298c8a7
+timeCreated: 1457304576
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 57637
+  packageName: Earth Mage
+  packageVersion: 1.0
+  assetPath: Assets/Earth_Mage/prefabs/staff+fx_prefab.prefab
+  uploadId: 107804
