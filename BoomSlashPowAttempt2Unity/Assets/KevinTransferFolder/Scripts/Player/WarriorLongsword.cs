@@ -6,22 +6,29 @@ public class WeaponDamage : MonoBehaviour
 
     private bool isDamageActive = false;
 
-    public void EnableDamage()
-    {
-        isDamageActive = true;
-    }
+    [SerializeField] private GameObject longSword;
+    private Collider swordCollider;
 
-    public void DisableDamage()
+    private void Awake()
     {
-        isDamageActive = false;
+        if (longSword != null)
+        {
+            swordCollider = longSword.GetComponent<Collider>();
+        }
+        else
+        {
+            swordCollider = GetComponent<Collider>();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!isDamageActive) return;
+        Debug.Log("Sword collided with: " + other.name);
 
         if (other.CompareTag("Enemy"))
         {
+
+            Debug.Log("contact with enemy");
             Enemy enemy = other.GetComponent<Enemy>();
 
 

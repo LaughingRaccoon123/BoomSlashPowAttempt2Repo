@@ -45,20 +45,16 @@ public class Enemy : MonoBehaviour
         distanceToPlayer = Vector3.Distance(transform.position, player.position);
         AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
 
-        // --- ATTACK FRAME DAMAGE LOGIC ---
         if (stateInfo.IsName(attackStateName))
         {
-            // Get normalized time (0.0 to 1.0) for the current loop
             float currentNormalizedTime = stateInfo.normalizedTime % 1f;
             int currentFrame = Mathf.FloorToInt(currentNormalizedTime * totalFramesInClip);
 
-            // Reset damage window if the animation loops back to the beginning
             if (currentFrame < targetDamageFrame)
             {
                 hasDealtDamage = false;
             }
 
-            // Trigger damage when reaching the target frame
             if (currentFrame >= targetDamageFrame && !hasDealtDamage)
             {
                 AttackPlayer(damage);
@@ -70,7 +66,6 @@ public class Enemy : MonoBehaviour
             hasDealtDamage = false;
         }
 
-        // --- MOVEMENT & AI LOGIC ---
         if (agent == null || !agent.enabled || !agent.isOnNavMesh) return;
 
         // Rotation
@@ -82,7 +77,6 @@ public class Enemy : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, rotationTarget, turnSpeed * Time.deltaTime);
         }
 
-        // State Machine Switches
         if (distanceToPlayer <= attackRange)
         {
             agent.isStopped = true;
@@ -134,7 +128,7 @@ public class Enemy : MonoBehaviour
         {
             collider.enabled = false;
         }
-        Destroy(gameObject, 1f);
+        
     }
 
     private void AttackPlayer(float damage)

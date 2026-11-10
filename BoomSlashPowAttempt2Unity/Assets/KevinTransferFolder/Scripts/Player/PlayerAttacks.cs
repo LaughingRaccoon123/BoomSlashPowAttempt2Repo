@@ -37,21 +37,21 @@ public class PlayerAttacks : MonoBehaviour
     {
         if (basicAttack.action.triggered && !isAttacking)
         {
-            isAttacking = true;
+            Debug.Log("basic");
 
-            anim.SetBool("attacking", true);
+            anim.ResetTrigger("attackTrigger");
+            anim.SetTrigger("attackTrigger");
 
             if (playerClass == "Mage")
             {
                 StartCoroutine(SpawnOrbAfterDelay(8));
+                StartCoroutine(ResetAttackAfterDuration(0.58f));
             }
             else if (playerClass == "Warrior")
             {
-
+                
             }
-            StartCoroutine(ResetAttackAfterDuration(0.6f));
         }
-
     }
 
     IEnumerator ResetAttackAfterDuration(float duration)
@@ -62,7 +62,7 @@ public class PlayerAttacks : MonoBehaviour
 
     void WarriorMeleeAttack()
     {
-
+        StartCoroutine(ResetAttackAfterDuration(0.58f));
     }
 
     void MageSpawnOrb()
@@ -110,7 +110,7 @@ public class PlayerAttacks : MonoBehaviour
 
     public void EndAttackAnimation()
     {
-        anim.SetBool("attacking", false);
+        anim.ResetTrigger("attackTrigger");
         isAttacking = false;
     }
 

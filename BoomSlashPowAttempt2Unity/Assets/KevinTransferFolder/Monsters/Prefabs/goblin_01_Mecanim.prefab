@@ -25808,10 +25808,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc909cef16b09784c80a67124944e323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  playerHealth: {fileID: 0}
   player: {fileID: 0}
   detectionRange: 12
-  attackRange: 2.5
+  attackRange: 2
   turnSpeed: 5
+  health: 20
+  damage: 1
+  attackStateName: attack01
+  targetDamageFrame: 15
+  totalFramesInClip: 35
 --- !u!195 &7278511325077641285
 NavMeshAgent:
   m_ObjectHideFlags: 0
