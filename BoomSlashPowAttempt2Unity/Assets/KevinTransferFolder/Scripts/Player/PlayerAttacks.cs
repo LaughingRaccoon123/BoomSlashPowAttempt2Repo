@@ -10,8 +10,6 @@ public class PlayerAttacks : MonoBehaviour
 
     private Animator anim;
 
-    private bool isAttacking = false;
-
     private bool canUseOrbAttack = false;
 
     private string playerClass;
@@ -35,9 +33,8 @@ public class PlayerAttacks : MonoBehaviour
     }
     void Update()
     {
-        if (basicAttack.action.triggered && !isAttacking)
+        if (basicAttack.action.triggered)
         {
-            Debug.Log("basic");
 
             anim.ResetTrigger("attackTrigger");
             anim.SetTrigger("attackTrigger");
@@ -95,7 +92,6 @@ public class PlayerAttacks : MonoBehaviour
             yield return null;
         }
 
-        isAttacking = false;
     }
 
     IEnumerator SpawnOrbAfterDelay(int framesToWait)
@@ -111,7 +107,6 @@ public class PlayerAttacks : MonoBehaviour
     public void EndAttackAnimation()
     {
         anim.ResetTrigger("attackTrigger");
-        isAttacking = false;
     }
 
     private void OnDrawGizmosSelected()

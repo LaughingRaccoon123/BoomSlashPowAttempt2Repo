@@ -220,12 +220,53 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.21864338, y: 1.0720578, z: 0.21628255}
-  m_Center: {x: 0.009363467, y: 0.3252305, z: 0.0139291845}
+  m_Size: {x: 0.1898339, y: 1.246908, z: 0.16154173}
+  m_Center: {x: 0.003170386, y: 0.41266, z: 0.013131074}
+--- !u!54 &402761723
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402761720}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &402761724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402761720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89a450f710e85724db0fa7d539907574, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponDamage
+  weaponDamage: 2
+  longSword: {fileID: 402761720}
 --- !u!108 &705507994 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 2472336087455810950, guid: dd95cd25251885047aeb17a64db2703a, type: 3}
@@ -317,9 +358,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8222884509025076817, guid: b37dcde3d0ea4934da36f610f07c0513, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1121244520}
-    - targetCorrespondingSourceObject: {fileID: 5070732894905588731, guid: b37dcde3d0ea4934da36f610f07c0513, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1670675565}
   m_SourcePrefab: {fileID: 100100000, guid: b37dcde3d0ea4934da36f610f07c0513, type: 3}
 --- !u!1 &1121244513 stripped
 GameObject:
@@ -590,8 +628,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CanvasUI
   deadScreen: {fileID: 163801114}
-    m_EditorClassIdentifier: Assembly-CSharp::CanvasUI
-  deadScreen: {fileID: 163801114}
 --- !u!1001 &1500265801
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -659,6 +695,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4334314812708720168, guid: edccbf15fadd9704cb7a2020a492b120, type: 3}
       insertIndex: -1
       addedObject: {fileID: 402761722}
+    - targetCorrespondingSourceObject: {fileID: 4334314812708720168, guid: edccbf15fadd9704cb7a2020a492b120, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 402761723}
+    - targetCorrespondingSourceObject: {fileID: 4334314812708720168, guid: edccbf15fadd9704cb7a2020a492b120, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 402761724}
   m_SourcePrefab: {fileID: 100100000, guid: edccbf15fadd9704cb7a2020a492b120, type: 3}
 --- !u!1 &1753467186 stripped
 GameObject:

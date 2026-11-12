@@ -83,7 +83,7 @@ public class Enemy : MonoBehaviour
             agent.velocity = Vector3.zero;
             anim.SetBool("run", false);
             anim.SetBool("walk", false);
-            anim.SetBool("attacking", true);
+            anim.SetTrigger("attackTrigger");
         }
         else if (distanceToPlayer <= detectionRange)
         {
@@ -91,7 +91,6 @@ public class Enemy : MonoBehaviour
             agent.SetDestination(player.position);
             anim.SetBool("run", true);
             anim.SetBool("walk", false);
-            anim.SetBool("attacking", false);
         }
         else
         {
@@ -99,18 +98,19 @@ public class Enemy : MonoBehaviour
             agent.velocity = Vector3.zero;
             anim.SetBool("run", false);
             anim.SetBool("walk", false);
-            anim.SetBool("attacking", false);
         }
     }
 
     public void EnemyTakeDamage(float damage)
     {
         health -= damage;
-        if (anim != null)
+
+        if (health > 0)
         {
-            anim.SetTrigger("damage"); 
-        }
-        if (health <= 0)
+            anim.ResetTrigger("damagedTrigger");
+            anim.SetTrigger("damagedTrigger");
+
+        } else if (health <= 0)
         {
             EnemyDie();
         }
