@@ -107,7 +107,6 @@ public class Enemy : MonoBehaviour
 
         if (health > 0)
         {
-            anim.ResetTrigger("damagedTrigger");
             anim.SetTrigger("damagedTrigger");
 
         } else if (health <= 0)
@@ -124,10 +123,6 @@ public class Enemy : MonoBehaviour
         }
         agent.enabled = false;
         Collider collider = GetComponent<Collider>();
-        if (collider != null)
-        {
-            collider.enabled = false;
-        }
         
     }
 

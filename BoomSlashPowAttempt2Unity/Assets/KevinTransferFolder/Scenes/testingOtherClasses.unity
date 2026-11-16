@@ -877,6 +877,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1537700986364549483, guid: 243ba36aded567246b9fb878e7e23a13, type: 3}
+      propertyPath: enemyPool.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1537700986364549483, guid: 243ba36aded567246b9fb878e7e23a13, type: 3}
+      propertyPath: 'enemyPool.Array.data[1]'
+      value: 
+      objectReference: {fileID: 193048, guid: be3cbaf02f5437e4a8956b882b64ad92, type: 3}
     - target: {fileID: 4483994586899115948, guid: 243ba36aded567246b9fb878e7e23a13, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.09865
@@ -1331,6 +1339,10 @@ PrefabInstance:
     - target: {fileID: 2895852956426878787, guid: 35aaaf262f348234d997b7f91a18593e, type: 3}
       propertyPath: m_Name
       value: NavMeshManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2895852956426878787, guid: 35aaaf262f348234d997b7f91a18593e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9112368418352883430, guid: 35aaaf262f348234d997b7f91a18593e, type: 3}
       propertyPath: m_NavMeshData

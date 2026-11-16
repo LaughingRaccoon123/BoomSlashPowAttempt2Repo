@@ -80,8 +80,6 @@ public class PlayerAttacks : MonoBehaviour
 
         MageSpawnOrb();
 
-        anim.SetBool("attacking", false);
-
         yield return null;
 
         AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
