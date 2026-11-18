@@ -23,12 +23,10 @@ public class PlayerAttacks : MonoBehaviour
         if (anim.runtimeAnimatorController.name == "magi_earthen_v1_0")
         {
             playerClass = "Mage";
-            canUseOrbAttack = true;
         }
         else if (anim.runtimeAnimatorController.name == "warrior")
         {
             playerClass = "Warrior";
-            canUseOrbAttack = false;
         }
     }
     void Update()
@@ -98,7 +96,11 @@ public class PlayerAttacks : MonoBehaviour
         {
             yield return null;
         }
-        MageSpawnOrb();
+
+        if (playerClass == "Mage")
+        {
+            MageSpawnOrb();
+        }
     }
 
 

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class WeaponDamage : MonoBehaviour
 {
-    [SerializeField] private float weaponDamage = 2f;
+    [SerializeField] private float weaponDamage = 20f;
 
     private bool isDamageActive = false;
 

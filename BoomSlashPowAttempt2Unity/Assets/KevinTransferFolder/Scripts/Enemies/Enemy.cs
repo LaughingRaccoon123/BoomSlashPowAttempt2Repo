@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem.Processors;
 
 public class Enemy : MonoBehaviour
 {
@@ -17,7 +18,6 @@ public class Enemy : MonoBehaviour
 
     private float distanceToPlayer;
 
-    [SerializeField] private string attackStateName = "attack01";
     [SerializeField] private int targetDamageFrame = 15;
     [SerializeField] private int totalFramesInClip = 35;
     private bool hasDealtDamage = false;
@@ -40,12 +40,13 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        if (anim.GetBool("isDead")) { return; }
         if (player == null) return;
 
         distanceToPlayer = Vector3.Distance(transform.position, player.position);
         AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
 
-        if (stateInfo.IsName(attackStateName))
+        if (anim.GetBool("attackTrigger"))
         {
             float currentNormalizedTime = stateInfo.normalizedTime % 1f;
             int currentFrame = Mathf.FloorToInt(currentNormalizedTime * totalFramesInClip);
@@ -68,7 +69,6 @@ public class Enemy : MonoBehaviour
 
         if (agent == null || !agent.enabled || !agent.isOnNavMesh) return;
 
-        // Rotation
         Vector3 direction = player.position - transform.position;
         direction.y = 0;
         if (direction != Vector3.zero && distanceToPlayer <= detectionRange)
@@ -82,7 +82,6 @@ public class Enemy : MonoBehaviour
             agent.isStopped = true;
             agent.velocity = Vector3.zero;
             anim.SetBool("run", false);
-            anim.SetBool("walk", false);
             anim.SetTrigger("attackTrigger");
         }
         else if (distanceToPlayer <= detectionRange)
@@ -90,14 +89,12 @@ public class Enemy : MonoBehaviour
             agent.isStopped = false;
             agent.SetDestination(player.position);
             anim.SetBool("run", true);
-            anim.SetBool("walk", false);
         }
         else
         {
             agent.isStopped = true;
             agent.velocity = Vector3.zero;
             anim.SetBool("run", false);
-            anim.SetBool("walk", false);
         }
     }
 
@@ -114,12 +111,13 @@ public class Enemy : MonoBehaviour
             EnemyDie();
         }
     }
+    
 
     private void EnemyDie()
     {
         if (anim != null)
         {
-            anim.SetBool("dead", true);
+            anim.SetBool("isDead", true);
         }
         agent.enabled = false;
         Collider collider = GetComponent<Collider>();
