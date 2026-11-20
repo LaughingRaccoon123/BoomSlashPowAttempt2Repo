@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using System.Net.Http.Headers;
 
 public class PlayerAttacks : MonoBehaviour
 {
@@ -10,11 +11,12 @@ public class PlayerAttacks : MonoBehaviour
 
     private Animator anim;
 
-    private bool canUseOrbAttack = false;
-
     private string playerClass;
 
     [SerializeField] private float warriorLongSwordRange = 2.5f;
+
+    [SerializeField]
+    private float upwardAngleOffset = 30f;
 
     void Start()
     {
@@ -55,39 +57,15 @@ public class PlayerAttacks : MonoBehaviour
         EndAttackAnimation();
     }
 
-    void WarriorMeleeAttack()
-    {
-        StartCoroutine(ResetAttackAfterDuration(0.58f));
-    }
-
     void MageSpawnOrb()
     {
-        Vector3 playerOffset = new Vector3(0.05f, 1.25f, 0.6f);
+        Vector3 playerOffset = new Vector3(0.05f, 1.5f, 0.6f);
         Vector3 rotatedPlayerOffset = transform.TransformDirection(playerOffset);
         Vector3 spawnPosition = transform.position + rotatedPlayerOffset;
 
-        GameObject spawnedObject = Instantiate(orbPrefab, spawnPosition, Camera.main.transform.rotation);
-    }
+        Quaternion adjustedRotation = Camera.main.transform.rotation * Quaternion.Euler(-upwardAngleOffset, 0f, 0f);
 
-    IEnumerator WaitForFramesThenSpawnOrb(int framesToWait)
-    {
-        for (int i = 0; i < framesToWait; i++)
-        {
-            yield return null;
-        }
-
-        MageSpawnOrb();
-
-        yield return null;
-
-        AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
-
-        while (stateInfo.IsName("Attack") && stateInfo.normalizedTime < 1.0f)
-        {
-            stateInfo = anim.GetCurrentAnimatorStateInfo(0);
-            yield return null;
-        }
-
+        GameObject spawnedObject = Instantiate(orbPrefab, spawnPosition, adjustedRotation);
     }
 
     IEnumerator SpawnOrbAfterDelay(int framesToWait)
@@ -102,7 +80,6 @@ public class PlayerAttacks : MonoBehaviour
             MageSpawnOrb();
         }
     }
-
 
     public void EndAttackAnimation()
     {
