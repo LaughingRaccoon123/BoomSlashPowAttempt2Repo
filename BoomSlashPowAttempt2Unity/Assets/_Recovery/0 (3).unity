@@ -239,7 +239,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WarriorLongsword
   weaponDamage: 1
-  longSword: {fileID: 0}
 --- !u!54 &402761724
 Rigidbody:
   m_ObjectHideFlags: 0
