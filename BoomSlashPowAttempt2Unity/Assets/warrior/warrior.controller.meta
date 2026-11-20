@@ -1,8 +1,15 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:BoomSlashPowAttempt2Unity/Assets/warrior/warrior.controller.meta
 guid: b9ed402e446085f4d9ab4fd818479637
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 9100000
+========
+guid: 4cebdd1ddb5e5d442a159fab57c0da89
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+>>>>>>>> Stashed changes:BoomSlashPowAttempt2Unity/Assets/UniversalRenderPipelineGlobalSettings.asset.meta
   userData: 
   assetBundleName: 
   assetBundleVariant: 
