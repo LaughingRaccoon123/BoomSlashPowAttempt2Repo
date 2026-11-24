@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+<<<<<<< Updated upstream:BoomSlashPowAttempt2Unity/Assets/EliWork/LoafbrrAssets/MInesAndCaveSet/Materials/A_MineTrim.mat.meta
+guid: beb58c336afffb548beb99e364275e98
+=======
+guid: d976a0eb15235f9428b99fe627fd7d37
+>>>>>>> Stashed changes:BoomSlashPowAttempt2Unity/Assets/EliWork/YughuesFreeRockMaterials/Materials/M_YFRM_02.mat.meta
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 12962
+  packageName: Yughues Free Rock Materials
+  packageVersion: 1.0
+  assetPath: Assets/YughuesFreeRockMaterials/Materials/M_YFRM_02.mat
+  uploadId: 751837

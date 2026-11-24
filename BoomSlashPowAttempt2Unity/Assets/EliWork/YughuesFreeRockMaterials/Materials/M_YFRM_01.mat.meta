@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+<<<<<<< Updated upstream:BoomSlashPowAttempt2Unity/Assets/EliWork/LoafbrrAssets/MInesAndCaveSet/Materials/A_MIneCarts_MAt.mat.meta
+guid: 33770c7a0308d7b438379a88ee5526c2
+=======
+guid: f09ce2b156d5dba46b56adbb97c0a2d7
+>>>>>>> Stashed changes:BoomSlashPowAttempt2Unity/Assets/EliWork/YughuesFreeRockMaterials/Materials/M_YFRM_01.mat.meta
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 12962
+  packageName: Yughues Free Rock Materials
+  packageVersion: 1.0
+  assetPath: Assets/YughuesFreeRockMaterials/Materials/M_YFRM_01.mat
+  uploadId: 751837
